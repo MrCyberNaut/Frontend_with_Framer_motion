@@ -26,6 +26,12 @@
   }
 
   .section-description {
-    @apply text-center text-[22px] leading-[30px] tracking-tight text-[@010D3E];
+    @apply text-center text-[22px] leading-[30px] tracking-tight text-[#010D3E];
+  }
+  .section-heading {
+    @apply max-w-[540px] mx-auto;
+  }
+  .card {
+    @apply p-10 border  border-[#222222]/10  rounded-3xl shadow-[0_7px_14px_rgba(0,0,0,0.1)] max-w-xs w-full;
   }
 }
