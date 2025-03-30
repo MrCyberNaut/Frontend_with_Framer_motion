@@ -1,11 +1,35 @@
+"use client";
 import ArrowIcon from "../assets/arrow-right.svg";
 import cogImage from "@/assets/cog.png";
 import cylinerImage from "@/assets/cylinder.png";
 import noodleImage from "@/assets/noodle.png";
 import Image from "next/image";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
+import { useRef } from "react";
 export const Hero = () => {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start end", "end start"],
+  });
+  // start end : when the start of the hero seciton reaches the end of the window
+  // end start : when the end of the hero section reaches the start of the window
+  const translateY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  // when the scroll progress is 0, the translateY is 0% and when the scroll progress is 1, the translateY is 100%
+  // useMotionValueEvent(scrollYProgress, "change", (latestValue) =>
+  //   console.log(latestValue)
+  // );
+  // when the scroll progress changes, log the latest value to the console
   return (
-    <section className="pt-8 pb-20 md:pt-5 md:pb-18 bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183EC2,#EAEEFE_100%)] overflow-x-clip ">
+    <section
+      ref={heroRef}
+      className="pt-8 pb-20 md:pt-5 md:pb-18 bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183EC2,#EAEEFE_100%)] overflow-x-clip "
+    >
       {/* container to keep all the stuff inside */}
       <div className="container ">
         <div className="md:flex items-center">
@@ -29,11 +53,18 @@ export const Hero = () => {
               </button>
             </div>
           </div>
-          <div className="mt-20 md:mt=0 md:h-[648px] md:flex-1 relative">
-            <Image
-              src={cogImage}
+          <div className="mt-20 md:mt-0 md:h-[648px] md:flex-1 relative">
+            <motion.img
+              src={cogImage.src}
               alt="Cog Image"
               className="md:absolute md:h-full md:w-auto md:max-w-none md:-left-6 lg:left-0  "
+              animate={{ translateY: [-30, 30] }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "mirror",
+                duration: 2,
+                ease: "easeInOut",
+              }}
             />
             <Image
               src={cylinerImage}
