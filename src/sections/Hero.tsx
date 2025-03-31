@@ -66,8 +66,8 @@ export const Hero = () => {
                 ease: "easeInOut",
               }}
             />
-            <Image
-              src={cylinerImage}
+            <motion.img
+              src={cylinerImage.src}
               width={220}
               height={220}
               alt="Cylinder Image"
