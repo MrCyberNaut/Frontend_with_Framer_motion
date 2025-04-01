@@ -6,9 +6,11 @@ import { Pricing } from "@/sections/Pricing";
 import { Testimonials } from "@/sections/Testimonials";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
+import { Analytics } from "@vercel/analytics/react";
 export default function Home() {
   return (
     <>
+      <Analytics />
       <Header />
       <Hero />
       <LogoTicker />
